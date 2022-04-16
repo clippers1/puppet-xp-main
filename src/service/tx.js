@@ -139,109 +139,124 @@ const oilPrice = async function (prov) {
 // 疫情
 const ncovDetail = async (city) => {
   const area = searchArea(city)
-  const url = 'https://voice.baidu.com/newpneumonia/getv2'
+  // const url = 'https://voice.baidu.com/newpneumonia/getv2'
   const kuakeUrl = 'https://m.sm.cn/api/rest'
 
   let res
   let content = ''
-  const callback = `jsonp_${new Date().getTime()}_${Math.ceil(Math.random() * 100000)}`
-  const commonPayload = {
-    from: 'mola-virus',
-    stage: 'publish',
-    area,
-    callback
-  }
-  const headers = {
-    'content-type': 'text/javascript; charset=utf-8',
-    'accept': '*/*',
-    'accept-encoding': 'gzip, deflate, br',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'cookie': 'BIDUPSID=F07F7F0F6A4E7D8659E9CE159BB5188D; PSTM=1645258056; BAIDUID=F07F7F0F6A4E7D86C4E975ED19312BE7:FG=1; BDUSS=ktRTVdDUk9VUHNXZkFtNVZuaTBTUHMwRHU0flFVbVRQTmZZNi02cENZc0NQemhpSVFBQUFBJCQAAAAAAAAAAAEAAABOX28PYTc5ODQ5MTA1NQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKyEGICshBib; BDUSS_BFESS=ktRTVdDUk9VUHNXZkFtNVZuaTBTUHMwRHU0flFVbVRQTmZZNi02cENZc0NQemhpSVFBQUFBJCQAAAAAAAAAAAEAAABOX28PYTc5ODQ5MTA1NQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKyEGICshBib; __yjs_duid=1_acbc7457932a66526d21e8b15320c2bd1645261441538; delPer=0; PSINO=3; BAIDUID_BFESS=F07F7F0F6A4E7D86C4E975ED19312BE7:FG=1; BDRCVFR[feWj1Vr5u3D]=I67x6TjHwwYf0; BAIDU_WISE_UID=wapp_1648045563703_279; BDRCVFR[dG2JNJb_ajR]=mk3SLVN4HKm; BDRCVFR[X_XKQks0S63]=mk3SLVN4HKm; BDRCVFR[-pGxjrCMryR]=mk3SLVN4HKm; BDRCVFR[tox4WRQ4-Km]=mk3SLVN4HKm; BDRCVFR[CLK3Lyfkr9D]=mk3SLVN4HKm; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; lscaptain=srcactivitycaptainindexcss_91e010cf-srccommonlibsesljs_e3d2f596-srcactivitycaptainindexjs_a2e9c712; Hm_lvt_68bd357b1731c0f15d8dbfef8c216d15=1648262311; ZD_ENTRY=baidu; ab_sr=1.0.1_NGI0NDUyZTM2MjUxMjI4ZDVkOTM1OWZhZGY1MWVmNjY3ZjViZGY3MGVhNjkxOTVkYTgyNTJkOTk4MjYzYjFmN2JhZTkyYTNkZjI4MTI2N2IyYzhjOTA2ZWJkODE2NjYwNjhjOWJmM2YyNzA2YzI0YWQ3MWUwZGExMDhlNTUxYjlkOGIyMmFmZmFhNTA4Y2Q4M2I0ZjdmNTI1NzNkMDg4ZmI5NWY3OTcyZWM3MzliMjkyMmQ2ZTBjMzJjMGE2ZDBl; H_PS_PSSID=35837_31253_34813_36165_34584_36142_36120_36075_35994_35956_35319_26350_36112_36103_36061; BA_HECTOR=a4008h258l0h2h0gp41h3thmb0r; Hm_lpvt_68bd357b1731c0f15d8dbfef8c216d15=1648282278',
-    'referer': 'https://voice.baidu.com/act/newpneumonia/newpneumonia?city=%E5%AE%89%E5%BE%BD-%E5%AE%89%E5%BE%BD',
-    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'script',
-    'sec-fetch-mode': 'no-cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36'
-  }
+  // const callback = `jsonp_${new Date().getTime()}_${Math.ceil(Math.random() * 100000)}`
+  // const commonPayload = {
+  //   from: 'mola-virus',
+  //   stage: 'publish',
+  //   area,
+  //   callback
+  // }
+  // const headers = {
+  //   'content-type': 'text/javascript; charset=utf-8',
+  //   'accept': '*/*',
+  //   'accept-encoding': 'gzip, deflate, br',
+  //   'accept-language': 'zh-CN,zh;q=0.9',
+  //   'cookie': 'BIDUPSID=F07F7F0F6A4E7D8659E9CE159BB5188D; PSTM=1645258056; BAIDUID=F07F7F0F6A4E7D86C4E975ED19312BE7:FG=1; BDUSS=ktRTVdDUk9VUHNXZkFtNVZuaTBTUHMwRHU0flFVbVRQTmZZNi02cENZc0NQemhpSVFBQUFBJCQAAAAAAAAAAAEAAABOX28PYTc5ODQ5MTA1NQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKyEGICshBib; BDUSS_BFESS=ktRTVdDUk9VUHNXZkFtNVZuaTBTUHMwRHU0flFVbVRQTmZZNi02cENZc0NQemhpSVFBQUFBJCQAAAAAAAAAAAEAAABOX28PYTc5ODQ5MTA1NQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKyEGICshBib; __yjs_duid=1_acbc7457932a66526d21e8b15320c2bd1645261441538; delPer=0; PSINO=3; BAIDUID_BFESS=F07F7F0F6A4E7D86C4E975ED19312BE7:FG=1; BDRCVFR[feWj1Vr5u3D]=I67x6TjHwwYf0; BAIDU_WISE_UID=wapp_1648045563703_279; BDRCVFR[dG2JNJb_ajR]=mk3SLVN4HKm; BDRCVFR[X_XKQks0S63]=mk3SLVN4HKm; BDRCVFR[-pGxjrCMryR]=mk3SLVN4HKm; BDRCVFR[tox4WRQ4-Km]=mk3SLVN4HKm; BDRCVFR[CLK3Lyfkr9D]=mk3SLVN4HKm; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; lscaptain=srcactivitycaptainindexcss_91e010cf-srccommonlibsesljs_e3d2f596-srcactivitycaptainindexjs_a2e9c712; Hm_lvt_68bd357b1731c0f15d8dbfef8c216d15=1648262311; ZD_ENTRY=baidu; ab_sr=1.0.1_NGI0NDUyZTM2MjUxMjI4ZDVkOTM1OWZhZGY1MWVmNjY3ZjViZGY3MGVhNjkxOTVkYTgyNTJkOTk4MjYzYjFmN2JhZTkyYTNkZjI4MTI2N2IyYzhjOTA2ZWJkODE2NjYwNjhjOWJmM2YyNzA2YzI0YWQ3MWUwZGExMDhlNTUxYjlkOGIyMmFmZmFhNTA4Y2Q4M2I0ZjdmNTI1NzNkMDg4ZmI5NWY3OTcyZWM3MzliMjkyMmQ2ZTBjMzJjMGE2ZDBl; H_PS_PSSID=35837_31253_34813_36165_34584_36142_36120_36075_35994_35956_35319_26350_36112_36103_36061; BA_HECTOR=a4008h258l0h2h0gp41h3thmb0r; Hm_lpvt_68bd357b1731c0f15d8dbfef8c216d15=1648282278',
+  //   'referer': 'https://voice.baidu.com/act/newpneumonia/newpneumonia?city=%E5%AE%89%E5%BE%BD-%E5%AE%89%E5%BE%BD',
+  //   'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"',
+  //   'sec-ch-ua-mobile': '?0',
+  //   'sec-ch-ua-platform': '"Windows"',
+  //   'sec-fetch-dest': 'script',
+  //   'sec-fetch-mode': 'no-cors',
+  //   'sec-fetch-site': 'same-origin',
+  //   'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36'
+  // }
 
   if (typeof area !== 'string') return
 
-  if (area.includes('-') || area.includes('上海')) {
-    // const payloadCity = {
-    //   target: 'trendCity',
-    //   ...commonPayload
-    // }
-    // const paramsCity = new URLSearchParams(payloadCity);
-    // res = await fetch(`${url}?${paramsCity.toString()}`, {
-    //   headers,
-    // })
-    let city = area.includes('上海') ? '上海' : area.split('-')[1]
+  // if (area.includes('-')) {
+  // const payloadCity = {
+  //   target: 'trendCity',
+  //   ...commonPayload
+  // }
+  // const paramsCity = new URLSearchParams(payloadCity);
+  // res = await fetch(`${url}?${paramsCity.toString()}`, {
+  //   headers,
+  // })
+  // } else {
+  //   const payload = {
+  //     target: 'trend',
+  //     isCaseIn: 1,
+  //     ...commonPayload
+  //   }
+  //   const params = new URLSearchParams(payload);
+  //   res = await fetch(`${url}?${params.toString()}`, {
+  //     headers,
+  //   })
+  //   const resText = await res.text()
+  //   const formatResText = resText.replace(callback, '').replace('(', '').replace(')', '').replace(';', '')
+  //   const resObject = formatResText.startsWith('{') && formatResText.endsWith('}') ? JSON.parse(formatResText) : undefined
+  //   if (resObject) {
+  //     const { status, data, msg, errmsg } = resObject
+  //     if (status === 0 && msg === 'success') {
+  //       const _data = data[0]
+  //       const updateDate = _data?.trend?.updateDate[_data?.trend?.updateDate.length - 1]
+
+  //       const list = _data?.trend?.list.map(item => {
+  //         return `${item.name}: ${item.data[item.data.length - 1]}`
+  //       })
+
+  //       content += `${_data.name}\n`
+  //       content += `时间: ${updateDate}\n`
+  //       content += `${list.join('\n')}`
+
+  //     } else {
+  //       content += errmsg ?? '暂无信息'
+  //     }
+  //   } else {
+  //     content += '查询不对哦'
+  //   }
+  // }
+
+  let cityName = ''
+  const payload = {
+    format: 'json',
+    method: 'Huoshenshan.ncov2022',
+    type: 'latest',
+    news_type: 'ncp',
+    uc_param_str: 'dsdnfrpfbivesscpgimibtbmnijblaupogpintnwktprchmtut',
+  }
+  if (area.includes('-')) {
+    cityName = area.split('-')[1]
     const payloadCity = {
-      format: 'json',
-      method: 'Huoshenshan.ncov2022',
-      type: 'latest',
-      news_type: 'ncp',
-      city,
-      uc_param_str: 'dsdnfrpfbivesscpgimibtbmnijblaupogpintnwktprchmtut',
+      ...payload,
+      city: cityName
     }
     const paramsCity = new URLSearchParams(payloadCity)
     res = await fetch(`${kuakeUrl}?${paramsCity.toString()}`)
     const data = await res.json()
     content += `${data.time}\n`
+    content += `${data.cityData.city}\n`
     content += `时间: ${data.incrTime}\n`
-    if (city === '上海') { // 上海
-      content += `${data.provinceData.name}\n`
-      content += `确诊: ${data.provinceData.sure_cnt}\n`
-      content += `治愈: ${data.provinceData.cure_cnt}\n`
-      content += `死亡: ${data.provinceData.die_cnt}\n`
-      content += `新增确诊: ${data.provinceData.sure_new_cnt}\n`
-      content += `新增本土: ${data.provinceData.sure_new_loc}\n`
-      content += `新增无症状: ${data.provinceData.sure_new_hid}\n`
-    } else {
-      content += `${data.cityData.city}\n`
-      content += `确诊: ${data.cityData.sure_cnt}\n`
-      content += `治愈: ${data.cityData.cure_cnt}\n`
-      content += `死亡: ${data.cityData.die_cnt}\n`
-      content += `新增确诊: ${data.cityData.sure_new_cnt}\n`
-      content += `新增本土: ${data.cityData.sure_new_loc}\n`
-      content += `新增无症状: ${data.cityData.sure_new_hid}\n`
-    }
+    content += `确诊: ${data.cityData.sure_cnt}\n`
+    content += `治愈: ${data.cityData.cure_cnt}\n`
+    content += `死亡: ${data.cityData.die_cnt}\n`
+    content += `新增确诊: ${data.cityData.sure_new_cnt}\n`
+    content += `新增本土: ${data.cityData.sure_new_loc}\n`
+    content += `新增无症状: ${data.cityData.sure_new_hid}\n`
   } else {
-    const payload = {
-      target: 'trend',
-      isCaseIn: 1,
-      ...commonPayload
+    cityName = area
+    const payloadProvince = {
+      ...payload,
+      city: cityName
     }
-    const params = new URLSearchParams(payload);
-    res = await fetch(`${url}?${params.toString()}`, {
-      headers,
-    })
-    const resText = await res.text()
-    const formatResText = resText.replace(callback, '').replace('(', '').replace(')', '').replace(';', '')
-    const resObject = formatResText.startsWith('{') && formatResText.endsWith('}') ? JSON.parse(formatResText) : undefined
-    if (resObject) {
-      const { status, data, msg, errmsg } = resObject
-      if (status === 0 && msg === 'success') {
-        const _data = data[0]
-        const updateDate = _data?.trend?.updateDate[_data?.trend?.updateDate.length - 1]
-
-        const list = _data?.trend?.list.map(item => {
-          return `${item.name}: ${item.data[item.data.length - 1]}`
-        })
-
-        content += `${_data.name}\n`
-        content += `时间: ${updateDate}\n`
-        content += `${list.join('\n')}`
-
-      } else {
-        content += errmsg ?? '暂无信息'
-      }
-    } else {
-      content += '查询不对哦'
-    }
+    const paramsCity = new URLSearchParams(payloadProvince)
+    res = await fetch(`${kuakeUrl}?${paramsCity.toString()}`)
+    const data = await res.json()
+    content += `${data.time}\n`
+    content += `${data.provinceData.name}\n`
+    content += `时间: ${data.incrTime}\n`
+    content += `确诊: ${data.provinceData.sure_cnt}\n`
+    content += `治愈: ${data.provinceData.cure_cnt}\n`
+    content += `死亡: ${data.provinceData.die_cnt}\n`
+    content += `新增确诊: ${data.provinceData.sure_new_cnt}\n`
+    content += `新增本土: ${data.provinceData.sure_new_loc}\n`
+    content += `新增无症状: ${data.provinceData.sure_new_hid}\n`
   }
 
   return content

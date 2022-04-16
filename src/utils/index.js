@@ -7,7 +7,8 @@ import CITY from '../constants/city.js'
 export const searchArea = (area) => {
     for (let [k, v] of Object.entries(CITY)) {
         if (k.startsWith(area)) {
-            return k
+            // return k
+            return CITY[k][0]
         } else {
             for (let i = 0; i < v.length; i++) {
                 if (v[i].startsWith(area)) {

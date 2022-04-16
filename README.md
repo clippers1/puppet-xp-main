@@ -1,2 +1,2 @@
-# fork from [pupuet-xp](https://github.com/wechaty/puppet-xp)
+# fork from [puppet-xp](https://github.com/wechaty/puppet-xp)
 
