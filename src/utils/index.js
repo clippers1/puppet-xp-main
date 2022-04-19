@@ -4,19 +4,23 @@ import CITY from '../constants/city.js'
 
 // const CITY = fs.readFileSync(path.join(__dirname, '../src/constants/city.json'), 'utf-8')
 
-export const searchArea = (area) => {
+/**
+ * 
+ * @param {string} area  
+ * @param {boolean | undefined} isProvince 
+ * @returns string
+ */
+export const searchArea = (area, isProvince) => {
     for (let [k, v] of Object.entries(CITY)) {
         if (k.startsWith(area)) {
-            // return k
-            return CITY[k][0]
+            return isProvince ? k : CITY[k][0]
         } else {
             for (let i = 0; i < v.length; i++) {
                 if (v[i].startsWith(area)) {
-                    return `${k}-${v[i]}`
+                    return isProvince ? k : `${k}-${v[i]}`
                 }
             }
         }
-
     }
 }
 

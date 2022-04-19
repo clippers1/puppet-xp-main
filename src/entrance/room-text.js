@@ -100,7 +100,7 @@ export default async function entryHandleText(text) {
     return robot(handleText);
   }
 
-  const reg = (str) => new RegExp(str);
+  const reg = (str) => new RegExp(str, 'i');
   for (let [k, v] of Object.entries(matchMap)) {
     if (reg(k).test(text)) {
       return v(text);

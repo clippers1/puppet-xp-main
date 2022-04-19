@@ -111,9 +111,14 @@ const sportNews = async () => {
 const oilPrice = async function (prov) {
   let url = "http://api.tianapi.com/txapi/oilprice/index";
   let content = "";
+  const computedProv = searchArea(prov, true)
+  if (typeof computedProv === 'undefined' || computedProv === '') {
+    content += "未查询到该省份～";
+    return content
+  }
   const res = await Fetch(url, {
     key: config.tianxing.key,
-    prov,
+    prov: searchArea(prov, true),
   });
 
   if (res.code === 200) {
