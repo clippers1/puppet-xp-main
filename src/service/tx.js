@@ -298,7 +298,7 @@ const weiboHot = async () => {
   let url = "http://api.tianapi.com/weibohot/index";
   let content = "";
 
-  const res = await fetch(url, {
+  const res = await Fetch(url, {
     key: config.tianxing.key,
   });
   if (res.code === 200) {
