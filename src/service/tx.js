@@ -308,7 +308,7 @@ const weiboHot = async () => {
       return;
     }
     newslist.slice(0, 10).forEach((news, index) => {
-      content += `${news.hotword} ${news.hotwordnum} ${news.hottag}\n`;
+      content += `${index + 1}: ${news.hotword} \n`;
     });
   } else {
     console.log("查询微博热搜失败");
