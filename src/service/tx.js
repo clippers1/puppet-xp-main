@@ -307,7 +307,7 @@ const weiboHot = async () => {
       content += "查询微博热搜为空";
       return;
     }
-    newslist.forEach((news, index) => {
+    newslist.slice(0, 10).forEach((news, index) => {
       content += `${news.hotword} ${news.hotwordnum} ${news.hottag}\n`;
     });
   } else {
