@@ -79,8 +79,8 @@ const handNbaLive = async (text) => {
 };
 
 const handleBaidu = async (text) => {
-  const text = text.replace("百度", "").trim();
-  return await baike(text);
+  const entry = text.replace("百度", "").trim();
+  return await baike(entry);
 };
 
 // 关键词匹配map
