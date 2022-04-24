@@ -1,4 +1,4 @@
-import Fetch from "../utils/fetch";
+import Fetch from "../utils/fetch.js";
 
 const baike = async (text) => {
   const url = "https://baike.baidu.com/api/openapi/BaikeLemmaCardApi";
