@@ -16,6 +16,7 @@ import { constellation, nba } from "../service/juhe.js";
 import { fetchFundClass, fetchFundDetail } from "../service/fund.js";
 import config from "../config/index.js";
 import { getNbaLiveData } from "../service/getNbaLiveData.mjs";
+import { baike } from "../service/baidu-baike.js";
 
 const handleWeather = async (text) => {
   let city = undefined;
@@ -68,14 +69,19 @@ const handleSharesDetail = async (text) => {
   return await fetchSharesDetail(code);
 };
 const handNcov = async (text) => {
-  const city = text.replace('疫情', '').trim()
+  const city = text.replace("疫情", "").trim();
   return await ncov(city);
 };
 
 const handNbaLive = async (text) => {
-  const res = await getNbaLiveData()
-  return res.slice(1, res.length - 1).split('$')
-}
+  const res = await getNbaLiveData();
+  return res.slice(1, res.length - 1).split("$");
+};
+
+const handleBaidu = async (text) => {
+  const text = text.replace("百度", "").trim();
+  return await baike(text);
+};
 
 // 关键词匹配map
 const matchMap = {
@@ -90,17 +96,18 @@ const matchMap = {
   基金代码: handleFundDetail,
   股票代码: handleSharesDetail,
   疫情: handNcov,
-  "^直播": handNbaLive
+  "^直播": handNbaLive,
+  "^百度": handleBaidu,
 };
 
 export default async function entryHandleText(text) {
-  const isAt = text.startsWith(`@${config.botName}`)
+  const isAt = text.startsWith(`@${config.botName}`);
   if (isAt) {
     const handleText = text.replace(`@${config.botName}`, "").trim();
     return robot(handleText);
   }
 
-  const reg = (str) => new RegExp(str, 'i');
+  const reg = (str) => new RegExp(str, "i");
   for (let [k, v] of Object.entries(matchMap)) {
     if (reg(k).test(text)) {
       return v(text);
@@ -110,5 +117,5 @@ export default async function entryHandleText(text) {
   if (/^翻译/.test(text)) {
     return handleTranlation(text);
   }
-  return false
+  return false;
 }
