@@ -101,7 +101,7 @@ const matchMap = {
 };
 
 export default async function entryHandleText(text) {
-  const isAt = text.startsWith(`@${config.botName}`);
+  const isAt = text.startsWith(`@${config.botName}`) || text.endsWith(`@${config.botName}`);
   if (isAt) {
     const handleText = text.replace(`@${config.botName}`, "").trim();
     return robot(handleText);
