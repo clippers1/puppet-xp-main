@@ -243,7 +243,7 @@ const ncovDetail = async (city) => {
     content += `死亡: ${data.cityData.die_cnt}\n`
     content += `新增确诊: ${data.cityData.sure_new_cnt}\n`
     content += `新增本土: ${data.cityData.sure_new_loc}\n`
-    content += `新增无症状: ${data.cityData.sure_new_hid}\n`
+    content += `新增无症状: ${data.cityData.sure_new_hid}`
   } else {
     cityName = area
     const payloadProvince = {
@@ -261,7 +261,7 @@ const ncovDetail = async (city) => {
     content += `死亡: ${data.provinceData.die_cnt}\n`
     content += `新增确诊: ${data.provinceData.sure_new_cnt}\n`
     content += `新增本土: ${data.provinceData.sure_new_loc}\n`
-    content += `新增无症状: ${data.provinceData.sure_new_hid}\n`
+    content += `新增无症状: ${data.provinceData.sure_new_hid}`
   }
 
   return content

@@ -20,7 +20,7 @@ const nba = async () => {
         res.result.matchs[1]?.list.forEach((match) => {
           content += `${formatTeamName(match.team1)} ${match.team1_score} : ${match.team2_score} ${formatTeamName(match.team2)}  ${match.status_text}\n`;
         });
-        content += `\n`;
+        // content += `\n`;
       }
       // if (data.result.matchs[2]) {
       //     content += `明日赛程：\n`
