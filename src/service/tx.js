@@ -316,44 +316,44 @@ const weiboHot = async () => {
   return content;
 };
 
-// const robot = async (qusetion) => {
-//   let url = "http://api.tianapi.com/robot/index";
-//   let content = "";
+const robot = async (qusetion) => {
+  let url = "http://api.tianapi.com/robot/index";
+  let content = "";
 
-//   const res = await Fetch(url, {
-//     key: config.tianxing.key,
-//     qusetion,
-//   });
+  const res = await Fetch(url, {
+    key: config.tianxing.key,
+    qusetion,
+  });
 
-//   if (res.code === 200) {
-//     const { newslist } = res;
-//     if (newslist[0].datatype === "text") {
-//       content += newslist[0].reply;
-//     }
-//   } else {
-//     content += '听不懂～'
-//     console.log("robot fail");
-//   }
-
-//   return content;
-// };
-
-const robot = async (msg) => {
-  let content = ''
-  const url = 'https://api.qingyunke.com/api.php?key=free&appid=0&msg=%E4%BD%A0%E5%9C%A8%E5%B9%B2%E4%BB%80%E4%B9%88'
-  const res = await Fetch (url, {
-    key: 'free',
-    appid: 0,
-    msg
-  }) 
-
-  if (res.result === 0) {
-    content += res.content
+  if (res.code === 200) {
+    const { newslist } = res;
+    if (newslist[0].datatype === "text") {
+      content += newslist[0].reply;
+    }
   } else {
-    content += '听不懂，宕机了~'
+    content += '听不懂～'
+    console.log("robot fail");
   }
 
-  return content
-}
+  return content;
+};
+
+// const robot = async (msg) => {
+//   let content = ''
+//   const url = 'https://api.qingyunke.com/api.php?key=free&appid=0&msg=%E4%BD%A0%E5%9C%A8%E5%B9%B2%E4%BB%80%E4%B9%88'
+//   const res = await Fetch (url, {
+//     key: 'free',
+//     appid: 0,
+//     msg
+//   }) 
+
+//   if (res.result === 0) {
+//     content += res.content
+//   } else {
+//     content += '听不懂，宕机了~'
+//   }
+
+//   return content
+// }
 
 export { weather, news, sportNews, oilPrice, ncov, weiboHot, robot };
