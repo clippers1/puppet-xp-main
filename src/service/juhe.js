@@ -14,7 +14,7 @@ const nba = async () => {
   });
 
   if (res.error_code == 0) {
-    if (Array.isArray(res.result.matchs) && res.result.matchs.length > 3) {
+   if (Array.isArray(res.result.matchs) && res.result.matchs.length > 1) {
       if (res.result.matchs[1]) {
         content += `今日赛程：\n`;
         res.result.matchs[1]?.list.forEach((match) => {
