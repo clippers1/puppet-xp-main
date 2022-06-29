@@ -146,7 +146,7 @@ async function main() {
     await detach(sidecar)
   }
 
-  autoSend(sidecar) // 自动发送
+  // autoSend(sidecar) // 自动发送
 
   process.on('SIGINT', clean)
   process.on('SIGTERM', clean)
