@@ -32,14 +32,14 @@ sendServerStatusRule.hour = 7;
 sendServerStatusRule.minute = 47;
 sendServerStatusRule.second = 0;
 
-const autoSend = (sidecar) => {
-  // auto send
-  schedule.scheduleJob(sendServerStatusRule, () => {
-    getServerStatus().then(result => {
-      result && (sidecar.sendMsg(config.talker.wxid.lover, result));
-    })
-  });
-}
+// const autoSend = (sidecar) => {
+//   // auto send
+//   schedule.scheduleJob(sendServerStatusRule, () => {
+//     getServerStatus().then(result => {
+//       result && (sidecar.sendMsg(config.talker.wxid.lover, result));
+//     })
+//   });
+// }
 
 
 async function main() {
