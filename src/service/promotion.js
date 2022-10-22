@@ -47,7 +47,7 @@ const getBuyDigital = async () => {
 
   const { code, data } = response
   if (code === 0) {
-    data.data.forEach(item => {
+    data.data.slice(0, 11).forEach(item => {
       if (item.title && item.link) {
         reply += `${item.title}\n`
         reply += `${item.link}\n`
