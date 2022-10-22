@@ -29,7 +29,7 @@ const getGoodToBuy = async () => {
   if (code === 0) {
     data.slice(0, 10).forEach(item => {
       if (item.article_title && item.article_link && item.article_mall && item.article_price) {
-        reply += `${item.article_mall} - ${item.article_price}\n`
+        reply += `${item.article_mall} -> ${item.article_price}\n`
         reply += `${item.article_title}\n`
         reply += `${item.article_link}\n`
         reply += '\n'
@@ -39,4 +39,23 @@ const getGoodToBuy = async () => {
   return reply
 }
 
-export { getCoupon, getGoodToBuy }
+const getBuyDigital = async () => {
+  let url = 'http://localhost:5487/api/promotion/buydigital'
+
+  let reply = ''
+  const response = await Fetch(url)
+
+  const { code, data } = response
+  if (code === 0) {
+    data.data.forEach(item => {
+      if (item.title && item.link) {
+        reply += `${item.title}\n`
+        reply += `${item.link}\n`
+        reply += '\n'
+      }
+    })
+  }
+  return reply
+}
+
+export { getCoupon, getGoodToBuy, getBuyDigital }
