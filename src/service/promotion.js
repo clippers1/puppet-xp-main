@@ -27,8 +27,9 @@ const getGoodToBuy = async () => {
 
   const { code, data } = response
   if (code === 0) {
-    data.forEach(item => {
-      if (item.article_title && item.article_link) {
+    data.slice(0, 10).forEach(item => {
+      if (item.article_title && item.article_link && item.article_mall && item.article_price) {
+        reply += `${item.article_mall} - ${item.article_price}\n`
         reply += `${item.article_title}\n`
         reply += `${item.article_link}\n`
         reply += '\n'
