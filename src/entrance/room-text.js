@@ -17,7 +17,7 @@ import { fetchFundClass, fetchFundDetail } from "../service/fund.js";
 import config from "../config/index.js";
 import { getNbaLiveData } from "../service/getNbaLiveData.mjs";
 import { baike } from "../service/baidu-baike.js";
-import { getCoupon } from "../service/promotion.js";
+import { getCoupon, getGoodToBuy } from "../service/promotion.js";
 
 const handleWeather = async (text) => {
   let city = undefined;
@@ -89,6 +89,12 @@ const handleCoupon = async (text) => {
   return await getCoupon()
 }
 
+const handleGoodToBuy = async (text) => {
+  if (text !== '买买买') return
+  return await getGoodToBuy()
+}
+
+
 // 关键词匹配map
 const matchMap = {
   天气: handleWeather,
@@ -104,7 +110,8 @@ const matchMap = {
   疫情: handNcov,
   "^直播": handNbaLive,
   "^百度": handleBaidu,
-  "^优惠券": handleCoupon
+  "^优惠券": handleCoupon,
+  "^买买买": handleGoodToBuy
 };
 
 export default async function entryHandleText(text) {
