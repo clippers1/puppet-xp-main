@@ -76,7 +76,8 @@ const handNcov = async (text) => {
 
 const handNbaLive = async (text) => {
   const res = await getNbaLiveData();
-  return res.slice(1, res.length - 1).split("$");
+  // return res.slice(1, res.length - 1).split("$");
+  return res
 };
 
 const handleBaidu = async (text) => {
