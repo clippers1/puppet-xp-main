@@ -40,6 +40,7 @@ export const getNbaLiveData = () => {
     // });
 
     return [
+        '复制任意url，手机浏览器打开',
         'http://jrkankan.com/',
         'http://jrszb111.com/',
         'http://www.wuchajian.tv/'
