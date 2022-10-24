@@ -58,4 +58,23 @@ const getBuyDigital = async () => {
   return reply
 }
 
-export { getCoupon, getGoodToBuy, getBuyDigital }
+const getRecommendGoods = async (text) => {
+  const host = `http://localhost:5487/api/promotion/get-recommend-goods/${text}`
+
+  let reply = ''
+  const response = await Fetch(url)
+
+  const { code, data } = response
+  if (code === 0) {
+    data.forEach(item => {
+      if (item.title && item.link && item.price) {
+        reply += `${item.title} -> ${item.price}\n`
+        reply += `${item.link}\n`
+        reply += '\n'
+      }
+    })
+  }
+  return reply
+}
+
+export { getCoupon, getGoodToBuy, getBuyDigital, getRecommendGoods }

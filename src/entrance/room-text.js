@@ -17,7 +17,7 @@ import { fetchFundClass, fetchFundDetail } from "../service/fund.js";
 import config from "../config/index.js";
 import { getNbaLiveData } from "../service/getNbaLiveData.mjs";
 import { baike } from "../service/baidu-baike.js";
-import { getBuyDigital, getCoupon, getGoodToBuy } from "../service/promotion.js";
+import { getBuyDigital, getCoupon, getGoodToBuy, getRecommendGoods } from "../service/promotion.js";
 
 const handleWeather = async (text) => {
   let city = undefined;
@@ -75,6 +75,7 @@ const handNcov = async (text) => {
 };
 
 const handNbaLive = async (text) => {
+  if (text !== '直播') return
   const res = await getNbaLiveData();
   // return res.slice(1, res.length - 1).split("$");
   return res
@@ -91,13 +92,35 @@ const handleCoupon = async (text) => {
 }
 
 const handleGoodToBuy = async (text) => {
-  if (text !== '买买买') return
+  if (text !== '推荐买') return
   return await getGoodToBuy()
 }
 
-const handleBuyDigital = async (text) => {
-  if (text !== '买数码') return
-  return await getBuyDigital()
+// const handleBuyDigital = async (text) => {
+//   if (text !== '买数码') return
+//   return await getBuyDigital()
+// }
+
+const handleRecommendGoods = async (text) => {
+  if (!text.startsWith('买')) return
+  const good = text.replace("买", "").trim();
+  return await getRecommendGoods(good)
+}
+
+const handleKeywords = (text) => {
+  if (text !== "关键字") return
+  let reply = ''
+  reply += '天气\n'
+  reply += '热点新闻\n'
+  reply += '体育新闻\n'
+  reply += '油价\n'
+  reply += '微博热搜\n'
+  reply += 'nba\n'
+  reply += '星座\n'
+  reply += '天气\n'
+  reply += '天气\n'
+  reply += '天气\n'
+  return 
 }
 
 
@@ -118,7 +141,9 @@ const matchMap = {
   "^百度": handleBaidu,
   "^优惠券": handleCoupon,
   "^买买买": handleGoodToBuy,
-  "^买数码": handleBuyDigital
+  // "^买数码": handleBuyDigital,
+  买: handleRecommendGoods,
+  "^关键字": handleKeywords
 };
 
 export default async function entryHandleText(text) {
