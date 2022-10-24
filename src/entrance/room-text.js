@@ -109,18 +109,25 @@ const handleRecommendGoods = async (text) => {
 
 const handleKeywords = (text) => {
   if (text !== "关键字") return
-  let reply = ''
+  let reply = '本欧文有以下关键词：\n'
   reply += '天气\n'
+  reply += '一周天气\n'
   reply += '热点新闻\n'
   reply += '体育新闻\n'
   reply += '油价\n'
   reply += '微博热搜\n'
+  reply += '翻译xxx\n'
   reply += 'nba\n'
-  reply += '星座\n'
-  reply += '天气\n'
-  reply += '天气\n'
-  reply += '天气\n'
-  return 
+  reply += 'xx星座\n'
+  reply += '基金类型xx\n'
+  reply += '基金代码xx\n'
+  reply += 'xx疫情\n'
+  reply += '直播\n'
+  reply += '百度xx\n'
+  reply += '推荐买\n'
+  reply += '优惠券\n'
+  reply += '买xx'
+  return
 }
 
 
@@ -140,7 +147,7 @@ const matchMap = {
   "^直播": handNbaLive,
   "^百度": handleBaidu,
   "^优惠券": handleCoupon,
-  "^买买买": handleGoodToBuy,
+  "^推荐买": handleGoodToBuy,
   // "^买数码": handleBuyDigital,
   买: handleRecommendGoods,
   "^关键字": handleKeywords
