@@ -121,6 +121,7 @@ const handleKeywords = (text) => {
   reply += 'xx星座\n'
   reply += '基金类型xx\n'
   reply += '基金代码xx\n'
+  reply += '股票代码xx\n'
   reply += 'xx疫情\n'
   reply += '直播\n'
   reply += '百度xx\n'
