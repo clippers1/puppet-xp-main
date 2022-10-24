@@ -108,7 +108,7 @@ const handleRecommendGoods = async (text) => {
 }
 
 const handleKeywords = (text) => {
-  if (text !== "关键字") return
+  if (text !== "关键词") return
   let reply = '本欧文有以下关键词：\n'
   reply += '天气\n'
   reply += '一周天气\n'
@@ -127,7 +127,7 @@ const handleKeywords = (text) => {
   reply += '推荐买\n'
   reply += '优惠券\n'
   reply += '买xx'
-  return
+  return reply
 }
 
 
@@ -150,7 +150,7 @@ const matchMap = {
   "^推荐买": handleGoodToBuy,
   // "^买数码": handleBuyDigital,
   买: handleRecommendGoods,
-  "^关键字": handleKeywords
+  "^关键词": handleKeywords
 };
 
 export default async function entryHandleText(text) {
