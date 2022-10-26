@@ -238,9 +238,9 @@ const ncovDetail = async (city) => {
     content += `${data.time}\n`
     content += `${data.cityData.city}\n`
     content += `时间: ${data.incrTime}\n`
-    content += `确诊: ${data.cityData.sure_cnt}\n`
-    content += `治愈: ${data.cityData.cure_cnt}\n`
-    content += `死亡: ${data.cityData.die_cnt}\n`
+    // content += `确诊: ${data.cityData.sure_cnt}\n`
+    // content += `治愈: ${data.cityData.cure_cnt}\n`
+    // content += `死亡: ${data.cityData.die_cnt}\n`
     content += `新增确诊: ${data.cityData.sure_new_cnt}\n`
     content += `新增本土: ${data.cityData.sure_new_loc}\n`
     content += `新增无症状: ${data.cityData.sure_new_hid}`
