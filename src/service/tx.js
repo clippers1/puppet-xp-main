@@ -236,14 +236,14 @@ const ncovDetail = async (city) => {
     res = await fetch(`${kuakeUrl}?${paramsCity.toString()}`)
     const data = await res.json()
     content += `${data.time}\n`
-    content += `${data.cityData.city}\n`
+    content += `${(data.cityData && data.cityData.city) || cityName}\n`
     content += `时间: ${data.incrTime}\n`
     // content += `确诊: ${data.cityData.sure_cnt}\n`
     // content += `治愈: ${data.cityData.cure_cnt}\n`
     // content += `死亡: ${data.cityData.die_cnt}\n`
-    content += `新增确诊: ${data.cityData.sure_new_cnt}\n`
-    content += `新增本土: ${data.cityData.sure_new_loc}\n`
-    content += `新增无症状: ${data.cityData.sure_new_hid}`
+    content += `新增确诊: ${(data.cityData && data.cityData.sure_new_cnt) || 0}\n`
+    content += `新增本土: ${(data.cityData && data.cityData.sure_new_loc) || 0}\n`
+    content += `新增无症状: ${(data.cityData && data.cityData.sure_new_hid) || 0}`
   } else {
     cityName = area
     const payloadProvince = {
@@ -254,14 +254,14 @@ const ncovDetail = async (city) => {
     res = await fetch(`${kuakeUrl}?${paramsCity.toString()}`)
     const data = await res.json()
     content += `${data.time}\n`
-    content += `${data.provinceData.name}\n`
+    content += `${data.provinceData?.name ?? cityName}\n`
     content += `时间: ${data.incrTime}\n`
     // content += `确诊: ${data.provinceData.sure_cnt}\n`
     // content += `治愈: ${data.provinceData.cure_cnt}\n`
     // content += `死亡: ${data.provinceData.die_cnt}\n`
-    content += `新增确诊: ${data.provinceData.sure_new_cnt}\n`
-    content += `新增本土: ${data.provinceData.sure_new_loc}\n`
-    content += `新增无症状: ${data.provinceData.sure_new_hid}`
+    content += `新增确诊: ${data.provinceData?.sure_new_cnt ?? 0}\n`
+    content += `新增本土: ${data.provinceData?.sure_new_loc ?? 0}\n`
+    content += `新增无症状: ${data.provinceData?.sure_new_hid ?? 0}`
   }
 
   return content
