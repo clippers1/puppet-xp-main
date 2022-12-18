@@ -127,7 +127,7 @@ const handleKeywords = (text) => {
   reply += '百度xx\n'
   reply += '推荐买\n'
   reply += '优惠券\n'
-  reply += '买xx'
+  // reply += '买xx'
   return reply
 }
 
@@ -150,7 +150,7 @@ const matchMap = {
   "^优惠券": handleCoupon,
   "^推荐买": handleGoodToBuy,
   // "^买数码": handleBuyDigital,
-  买: handleRecommendGoods,
+  // 买: handleRecommendGoods,
   "^关键词": handleKeywords
 };
 

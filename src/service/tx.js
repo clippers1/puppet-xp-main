@@ -46,7 +46,7 @@ const weather = async (city, weekFlag) => {
       content += `最低温度：${weather.lowest}\n`;
       content += `风向：${weather.wind}\n`;
       content += `风力：${weather.windsc}\n`;
-      content += `降雨概率：${weather.pop}%\n`;
+      content += `降雨量：${weather.pcpn}mm\n`;
       content += `相对湿度：${weather.humidity}\n`;
     }
   } else {
