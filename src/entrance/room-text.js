@@ -11,6 +11,7 @@ import {
   ncov,
   weiboHot,
   robot,
+  robotAi,
 } from "../service/tx.js";
 import { constellation, nba } from "../service/juhe.js";
 import { fetchFundClass, fetchFundDetail } from "../service/fund.js";
@@ -158,7 +159,7 @@ export default async function entryHandleText(text) {
   const isAt = text.trim().startsWith(`@${config.botName}`) || text.trim().endsWith(`@${config.botName}`);
   if (isAt) {
     const handleText = text.replace(`@${config.botName}`, "").trim();
-    return robot(handleText);
+    return robotAi(handleText);
   }
 
   const reg = (str) => new RegExp(str, "i");

@@ -356,4 +356,12 @@ const robot = async (qusetion) => {
 //   return content
 // }
 
-export { weather, news, sportNews, oilPrice, ncov, weiboHot, robot };
+const robotAi = async (msg) => {
+  let url = 'http://localhost:5220//api/chatgpt/chat'
+
+  let res = await fetch(`${url}?u=${msg}`)
+
+  return res
+}
+
+export { weather, news, sportNews, oilPrice, ncov, weiboHot, robot, robotAi };
