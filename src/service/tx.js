@@ -357,7 +357,7 @@ const robot = async (qusetion) => {
 // }
 
 const robotAi = async (msg) => {
-  let url = 'http://localhost:5220//api/chatgpt/chat'
+  let url = 'http://localhost:5220/api/chatgpt/chat'
 
   let res = await fetch(`${url}?u=${msg}`)
 
