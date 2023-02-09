@@ -361,7 +361,10 @@ const robotAi = async (msg) => {
 
   let res = await fetch(`${url}?u=${msg}`)
 
-  return res
+  if (res.status === 200) {
+    let content = await res.json()
+    return content
+  }
 }
 
 export { weather, news, sportNews, oilPrice, ncov, weiboHot, robot, robotAi };
