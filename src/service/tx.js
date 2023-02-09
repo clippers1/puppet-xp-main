@@ -362,7 +362,7 @@ const robotAi = async (msg) => {
   let res = await fetch(`${url}?u=${msg}`)
 
   if (res.status === 200) {
-    let content = await res.json()
+    let content = await res.text()
     return content
   }
 }
