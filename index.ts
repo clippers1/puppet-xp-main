@@ -131,7 +131,7 @@ async function main() {
     // console.info('recvMsg: text =', text)
     if (!talkerId) return
 
-    const result = await entryHandleText(text)
+    const result = await entryHandleText(text, toId)
     Array.isArray(result) ? result.forEach(async item => await sidecar.sendMsg(toId, item)) : result && await sidecar.sendMsg(toId, result)
 
     // if (talkerId && text === 'ding') {

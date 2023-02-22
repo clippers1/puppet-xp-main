@@ -155,11 +155,11 @@ const matchMap = {
   "^关键词": handleKeywords
 };
 
-export default async function entryHandleText(text) {
+export default async function entryHandleText(text, roomId) {
   const isAt = text.trim().startsWith(`@${config.botName}`) || text.trim().endsWith(`@${config.botName}`);
   if (isAt) {
     const handleText = text.replace(`@${config.botName}`, "").trim();
-    return robotAi(handleText);
+    return robotAi(handleText, roomId);
   }
 
   const reg = (str) => new RegExp(str, "i");

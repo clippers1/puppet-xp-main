@@ -356,10 +356,10 @@ const robot = async (qusetion) => {
 //   return content
 // }
 
-const robotAi = async (msg) => {
+const robotAi = async (msg, roomId) => {
   let url = 'http://localhost:5220/api/chatgpt/chat'
 
-  let res = await fetch(`${url}?u=${msg}`)
+  let res = await fetch(`${url}?u=${msg}&roomId=${roomId}`)
 
   if (res.status === 200) {
     let content = await res.text()
