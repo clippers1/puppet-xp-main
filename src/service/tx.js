@@ -363,6 +363,11 @@ const robotAi = async (msg, roomId) => {
 
   if (res.status === 200) {
     let content = await res.text()
+    if (content === 'a-valid-access-token') {
+      return '老子今天不干了，要加$$$'
+    } else if (content === 'sry, please try again') {
+      return '这位爷，您慢点说没反应过来'
+    }
     return content
   }
 }
