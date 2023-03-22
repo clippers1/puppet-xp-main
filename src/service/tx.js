@@ -10,50 +10,54 @@ import fetch from "node-fetch";
 
 // 天气
 const weather = async (city, weekFlag) => {
-  let url = "http://api.tianapi.com/tianqi/index";
-  let content = "";
+  try {
+    let url = "http://api.tianapi.com/tianqi/index";
+    let content = "";
 
-  const res = await Fetch(url, {
-    key: config.tianxing.key,
-    city,
-    json: true,
-  });
+    const res = await Fetch(url, {
+      key: config.tianxing.key,
+      city,
+      json: true,
+    });
 
-  if (res.code === 200) {
-    const { newslist } = res;
-    if (!newslist && Array.isArray(newslist) && newslist.length === 0) {
-      content += "查询天气信息为空";
-      return;
-    }
-    content += `${newslist[0].area.includes("巢湖") ? "宇宙中心" : "城市名称"
-      }：${newslist[0].area}\n`;
-    content += `更新时间：${moment().format("hh:mm")}\n`;
-    if (weekFlag) {
-      newslist.forEach((w, index) => {
-        if (index === 0) {
-          content += `今天：${w.weather} ${w.lowest}-${w.highest}\n`;
-        } else if (index === 1) {
-          content += `明天：${w.weather} ${w.lowest}-${w.highest}\n`;
-        } else {
-          content += `${w.week}：${w.weather} ${w.lowest}-${w.highest}\n`;
-        }
-      });
+    if (res.code === 200) {
+      const { newslist } = res;
+      if (!newslist && Array.isArray(newslist) && newslist.length === 0) {
+        content += "查询天气信息为空";
+        return;
+      }
+      content += `${newslist[0].area.includes("巢湖") ? "宇宙中心" : "城市名称"
+        }：${newslist[0].area}\n`;
+      content += `更新时间：${moment().format("hh:mm")}\n`;
+      if (weekFlag) {
+        newslist.forEach((w, index) => {
+          if (index === 0) {
+            content += `今天：${w.weather} ${w.lowest}-${w.highest}\n`;
+          } else if (index === 1) {
+            content += `明天：${w.weather} ${w.lowest}-${w.highest}\n`;
+          } else {
+            content += `${w.week}：${w.weather} ${w.lowest}-${w.highest}\n`;
+          }
+        });
+      } else {
+        const weather = newslist[0];
+        content += `天气情况：${weather.weather}\n`;
+        content += `实时温度：${weather.real}\n`;
+        content += `最高温度：${weather.highest}\n`;
+        content += `最低温度：${weather.lowest}\n`;
+        content += `风向：${weather.wind}\n`;
+        content += `风力：${weather.windsc}\n`;
+        content += `降雨量：${weather.pcpn}mm\n`;
+        content += `相对湿度：${weather.humidity}\n`;
+      }
     } else {
-      const weather = newslist[0];
-      content += `天气情况：${weather.weather}\n`;
-      content += `实时温度：${weather.real}\n`;
-      content += `最高温度：${weather.highest}\n`;
-      content += `最低温度：${weather.lowest}\n`;
-      content += `风向：${weather.wind}\n`;
-      content += `风力：${weather.windsc}\n`;
-      content += `降雨量：${weather.pcpn}mm\n`;
-      content += `相对湿度：${weather.humidity}\n`;
+      content += "未查询该城市天气";
+      console.log("查询该城市天气失败");
     }
-  } else {
-    content += "未查询该城市天气";
-    console.log("查询该城市天气失败");
+    return content;
+  } catch (error) {
+    console.log(error)
   }
-  return content;
 };
 
 // 新闻
@@ -109,36 +113,41 @@ const sportNews = async () => {
 
 // 油价
 const oilPrice = async function (prov) {
-  let url = "http://api.tianapi.com/txapi/oilprice/index";
-  let content = "";
-  const computedProv = searchArea(prov, true)
-  if (typeof computedProv === 'undefined' || computedProv === '') {
-    content += "未查询到该省份～";
-    return content
-  }
-  const res = await Fetch(url, {
-    key: config.tianxing.key,
-    prov: searchArea(prov, true),
-  });
-
-  if (res.code === 200) {
-    let result = Array.isArray(res.newslist) ? res.newslist[0] : {};
-    if (Object.keys(result).length === 0) {
-      content += "查询油价信息为空";
-      return;
+  try {
+    let url = "http://api.tianapi.com/txapi/oilprice/index";
+    let content = "";
+    const computedProv = searchArea(prov, true)
+    if (typeof computedProv === 'undefined' || computedProv === '') {
+      content += "未查询到该省份～";
+      return content
     }
-    content += `查询省份：${result.prov}\n`;
-    content += `更新时间：${moment(result.time).format("YYYY-MM-DD")}\n`;
-    content += `零号柴油：${result.p0}\n`;
-    content += `89号汽油：${result.p89}\n`;
-    content += `92号汽油：${result.p92}\n`;
-    content += `95号汽油：${result.p95}\n`;
-    content += `98号汽油：${result.p98}`;
-  } else {
-    content += "未查询到该省份～";
-    console.log("请求tx油价失败");
+    const res = await Fetch(url, {
+      key: config.tianxing.key,
+      prov: searchArea(prov, true),
+    });
+
+    if (res.code === 200) {
+      let result = Array.isArray(res.newslist) ? res.newslist[0] : {};
+      if (Object.keys(result).length === 0) {
+        content += "查询油价信息为空";
+        return;
+      }
+      content += `查询省份：${result.prov}\n`;
+      content += `更新时间：${moment(result.time).format("YYYY-MM-DD")}\n`;
+      content += `零号柴油：${result.p0}\n`;
+      content += `89号汽油：${result.p89}\n`;
+      content += `92号汽油：${result.p92}\n`;
+      content += `95号汽油：${result.p95}\n`;
+      content += `98号汽油：${result.p98}`;
+    } else {
+      content += "未查询到该省份～";
+      console.log("请求tx油价失败");
+    }
+    return content;
+  } catch (error) {
+    console.error(error)
   }
-  return content;
+
 };
 
 // 疫情
