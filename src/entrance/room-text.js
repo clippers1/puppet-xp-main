@@ -19,6 +19,7 @@ import config from "../config/index.js";
 import { getNbaLiveData } from "../service/getNbaLiveData.mjs";
 import { baike } from "../service/baidu-baike.js";
 import { getBuyDigital, getCoupon, getGoodToBuy, getRecommendGoods } from "../service/promotion.js";
+import { getFreeChatUrls } from "../service/freeChat.js";
 
 const handleWeather = async (text) => {
   let city = undefined;
@@ -132,6 +133,12 @@ const handleKeywords = (text) => {
   return reply
 }
 
+const handChatgpt = async (text) => {
+  const res = await getFreeChatUrls();
+
+  return res
+}
+
 
 // 关键词匹配map
 const matchMap = {
@@ -152,7 +159,8 @@ const matchMap = {
   "^推荐买": handleGoodToBuy,
   // "^买数码": handleBuyDigital,
   // 买: handleRecommendGoods,
-  "^关键词": handleKeywords
+  "^关键词": handleKeywords,
+  "^chatgpt": handChatgpt,
 };
 
 export default async function entryHandleText(text, roomId) {

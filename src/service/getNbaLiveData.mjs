@@ -41,9 +41,13 @@ export const getNbaLiveData = () => {
 
     return [
         '复制任意url，手机浏览器打开',
-        'http://www.515.tv/',
-        // 'http://jrkankan.com/',
+        'http://www.wuchajian.tv/',
+        'https://ddkanqiu.net/',
+        'https://www.yoozhibo.cc/',
         // 'http://jrszb111.com/',
-        'http://www.wuchajian.tv/'
+        // 'http://www.515.tv/',
+
+        // 'nba录像',
+        // 'https://www.24luxiang.com/nbaluxiang/'
     ]
 }

@@ -14,7 +14,7 @@ const nba = async () => {
   });
 
   if (res.error_code == 0) {
-   if (Array.isArray(res.result.matchs) && res.result.matchs.length > 1) {
+    if (Array.isArray(res.result.matchs) && res.result.matchs.length > 1) {
       if (res.result.matchs[1]) {
         content += `今日赛程：\n`;
         res.result.matchs[1]?.list.forEach((match) => {
@@ -35,7 +35,12 @@ const nba = async () => {
     content += "查询nba赛事失败";
     console.log("查询juhe, nba失败");
   }
-  return content;
+  content += '\n'
+  content += 'nba录像: (复制url，手机浏览器打开)'
+  return [
+    content,
+    'https://www.24luxiang.com/nbaluxiang/'
+  ];
 };
 
 const constellation = async (consName = "白羊座") => {
