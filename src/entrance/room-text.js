@@ -14,7 +14,7 @@ import {
   robotAi,
 } from "../service/tx.js";
 import { constellation, nba } from "../service/juhe.js";
-import { fetchFundClass, fetchFundDetail } from "../service/fund.js";
+import { fetchFundClass, fetchFundDetail, fetchSharesDetail } from "../service/fund.js";
 import config from "../config/index.js";
 import { getNbaLiveData } from "../service/getNbaLiveData.mjs";
 import { baike } from "../service/baidu-baike.js";
